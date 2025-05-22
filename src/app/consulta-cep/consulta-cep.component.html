@@ -1,0 +1,43 @@
+<div class="consulta-cep-form container mt-5">
+  <h2 class="text-center mb-4">Consulta de CEP</h2>
+
+  <div *ngIf="erro" class="alert alert-warning" role="alert" role="alert">
+    {{ erro }}
+  </div>
+
+  <form (ngSubmit)="consultarCep()" class="row g-3">
+    <div class="col-md-8 offset-md-2">
+      <label for="cep" class="form-label">Digite o CEP:</label>
+      <input type="text" id="cep" [(ngModel)]="cep" name="cep" required maxlength="8" pattern="[0-9]{8}" class="form-control" placeholder="Ex: 01001000" />
+    </div>
+    <div class="col-md-8 offset-md-2 d-grid">
+      <button type="submit" class="btn btn-primary">Consultar</button>
+    </div>
+  </form>
+
+  <div *ngIf="endereco" class="mt-4">
+    <h3>Endereço</h3>
+    <table class="table table-primary">
+      <thead>
+        <tr>
+          <th scope="col">CEP</th>
+          <th scope="col">Logradouro</th>
+          <th scope="col">Complemento</th>
+          <th scope="col">Bairro</th>
+          <th scope="col">Cidade</th>
+          <th scope="col">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ endereco.cep }}</td>
+          <td>{{ endereco.logradouro }}</td>
+          <td>{{ endereco.complemento || 'Não disponível' }}</td>
+          <td>{{ endereco.bairro }}</td>
+          <td>{{ endereco.localidade }}</td>
+          <td>{{ endereco.uf }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
